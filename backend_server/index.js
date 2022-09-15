@@ -3,6 +3,7 @@ const app = express();
 const cors =require('cors');
 const mongoose = require('mongoose');
 const User = require('./models/user_model');
+const jwt = require('jsonwebtoken');
 
 app.use(cors())
 app.use(express.json())
@@ -20,18 +21,23 @@ app.post('/api/register',async (req,res)=>{
 });
 
 app.post('/api/login',async (req,res)=>{
-    try{
+    
         const user = await User.findOne({email:req.body.email,pass:req.body.pass})
         if (user){
-            return user.json({status:"ok", user:true})
+
+            const token =jwt.sign(
+                {f_name: user.f_name,
+                email:user.email},
+                    'secret123'
+            )
+
+            return res.json({status:"ok", user:token})
         }
         else{
-            return user.json({status:"error", user:false})
+            return res.json({status:"error", user:false})
         }
-    }
-    catch(err){
-        res.json({error:err})
-    }
+   
+  
 });
 
 

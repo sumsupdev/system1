@@ -6,7 +6,7 @@ const User = new mongoose.Schema({
     email : {type: String, required: true, unique: true},
     pass : {type: String, required: true},
 },
-{collation: 'user-data'}
+{collation: { locale: 'en_US', strength: 1 }}
 
 );
 

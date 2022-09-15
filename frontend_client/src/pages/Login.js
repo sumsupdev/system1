@@ -27,7 +27,7 @@ async function registerUser(event){
 
   return (
     <div>
-      <h1>Register</h1>
+      <h1>Login</h1>
       <form onSubmit={registerUser}>
         <input value={email} 
         onChange={(e)=>setEmail(e.target.value)}
