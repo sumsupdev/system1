@@ -21,7 +21,16 @@ async function registerUser(event){
   })
 
   const data = await response.json()
-  console.log(data);
+  
+  if (data.user){
+    alert('login successfull');
+    window.location.href='/Quotes'
+  }
+  else{
+    alert('401, unauthorized');
+  }
+
+
 }
 
 
