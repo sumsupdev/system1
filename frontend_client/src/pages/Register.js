@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-
+import {useNavigate} from 'react-router-dom'
 function Register() {
+  let history = useNavigate();
   const [f_name, setF_name]= useState('')
   const [l_name, setL_name]= useState('')
   const [email, setEmail]= useState('')
@@ -26,6 +27,8 @@ async function registerUser(event){
 
   const data = await response.json()
   console.log(data);
+  history('/Login');
+  
 }
 
 

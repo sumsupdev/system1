@@ -31,7 +31,7 @@ app.post('/api/login',async (req,res)=>{
                     'secret123'
             )
 
-            return res.json({status:"ok", user:token})
+            return res.json({status:"ok", user:true,token:token})
         }
         else{
             return res.json({status:"error", user:false})
@@ -39,7 +39,10 @@ app.post('/api/login',async (req,res)=>{
    
   
 });
-
+app.get('/api/quotes',(req,res)=>{
+    console.log(req.headers['x-access-token']);
+    res.json({'item':'cake','token':req.headers});
+});
 
 
 app.listen(7777,()=>{
